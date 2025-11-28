@@ -1,0 +1,1251 @@
+<html lang="es"><head>
+    <meta charset="UTF-8">
+    <title>SENSI SAFE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="image/logo.png">
+    <meta name="description" content="SENSI SAFE">
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+    <!-- Text Visibility Improvements -->
+    <link rel="stylesheet" href="assets/css/text-visibility.css">
+    <style>
+        :root {
+            --primary-color: #ef4444;
+            --secondary-color: #8b5cf6;
+            --accent-color: #06b6d4;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --bg-color: #000000;
+            --card-bg: #1a1a1a;
+            --text-color: #ffffff;
+            --text-secondary: #e2e8f0;
+            --border-color: #333333;
+            --gradient-primary: linear-gradient(135deg, #ef4444, #dc2626);
+            --gradient-secondary: linear-gradient(135deg, #dc2626, #b91c1c);
+            --gradient-accent: linear-gradient(135deg, #ef4444, #dc2626);
+            --shadow-primary: 0 10px 25px rgba(239, 68, 68, 0.3);
+            --shadow-secondary: 0 10px 25px rgba(220, 38, 38, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(0, 0, 0, 0.95) !important;
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white !important;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-logo {
+            height: 40px;
+            width: 40px;
+            object-fit: contain;
+            margin-right: 0.75rem;
+            filter: brightness(1.1);
+        }
+        
+        .brand-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+        }
+        
+        .nav-link {
+            color: var(--text-secondary) !important;
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 0.75rem 1rem !important;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+            background: rgba(239, 68, 68, 0.1);
+            transform: translateY(-1px);
+        }
+        
+        .btn-get-started {
+            background: var(--gradient-primary) !important;
+            color: white !important;
+            border: none;
+            padding: 0.75rem 1.5rem !important;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-primary);
+        }
+        
+        .btn-get-started:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(239, 68, 68, 0.4);
+            background: linear-gradient(135deg, #dc2626, #b91c1c) !important;
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            min-height: 100vh;
+            background: #000000;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><radialGradient id="g" cx="50%" cy="50%"><stop offset="0%" stop-color="%233b82f6" stop-opacity="0.1"/><stop offset="100%" stop-color="%233b82f6" stop-opacity="0"/></radialGradient></defs><circle cx="50" cy="50" r="1" fill="url(%23g)"/></svg>') repeat;
+            background-size: 50px 50px;
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .brand-badge {
+            display: inline-block;
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 20px;
+            padding: 0.5rem 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .badge-text {
+            color: var(--primary-color);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+        
+        .brand-name {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+            margin: 0.5rem 0;
+        }
+        
+        .hero-description {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+        
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.25rem;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .hero-actions .btn {
+            padding: 0.875rem 2rem;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            margin-right: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero-actions .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-primary {
+            background: var(--gradient-primary);
+            border: none;
+            box-shadow: var(--shadow-primary);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            box-shadow: 0 8px 25px rgba(239, 68, 68, 0.4);
+        }
+
+        .btn-outline-light {
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            background: transparent;
+        }
+
+        .btn-outline-light:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+            color: white;
+        }
+
+        /* Hero Visual */
+        .hero-visual-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .logo-display {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .main-logo {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            filter: brightness(1.1) contrast(1.1);
+        }
+        
+        .feature-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            width: 100%;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .feature-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(239, 68, 68, 0.3);
+            transform: translateX(5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .feature-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+        
+        .feature-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+        
+        /* Features Section */
+        .features-section {
+            padding: 5rem 0;
+            background: var(--bg-color);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+                text-align: center;
+                margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .feature-card-large {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2.5rem;
+            height: 100%;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card-large:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(239, 68, 68, 0.3);
+        }
+
+        .feature-card-large::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .feature-card-large:hover::before {
+            opacity: 1;
+        }
+
+        .feature-icon-wrapper {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-primary);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .feature-card-large h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .feature-card-large p {
+            color: var(--text-secondary);
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        /* Products Section */
+        .products-section {
+            padding: 5rem 0;
+            background: #000000;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 0;
+            height: 100%;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(239, 68, 68, 0.3);
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .product-card:hover::before {
+            opacity: 1;
+        }
+
+        .product-image-wrapper {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            border-radius: 20px 20px 0 0;
+            position: relative;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-duration {
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .product-description {
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .product-price {
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .price-currency {
+            font-size: 1rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-right: 0.25rem;
+        }
+
+        .price-amount {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .product-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+
+        .feature-tag {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: var(--primary-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Ranking Section */
+        .ranking-section {
+            padding: 5rem 0;
+            background: var(--bg-color);
+        }
+
+        .ranking-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .ranking-item {
+            display: flex;
+            align-items: center;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ranking-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-color: rgba(239, 68, 68, 0.3);
+        }
+
+        .ranking-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .ranking-item:hover::before {
+            opacity: 1;
+        }
+
+        .rank-position {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: rgba(239, 68, 68, 0.1);
+            border-radius: 50%;
+            margin-right: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .rank-position i {
+            font-size: 1.5rem;
+        }
+
+        .rank-number {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            margin-right: 1.5rem;
+        }
+
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .user-details {
+            flex: 1;
+        }
+
+        .username {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
+            margin: 0 0 0.25rem 0;
+        }
+
+        .user-email {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        .spending-info {
+            text-align: right;
+            flex-shrink: 0;
+        }
+
+        .spending-amount {
+            display: flex;
+            align-items: baseline;
+            justify-content: flex-end;
+            margin-bottom: 0.25rem;
+        }
+
+        .currency {
+            font-size: 1rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-right: 0.25rem;
+        }
+
+        .amount {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .licenses-count {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 5rem 0;
+            background: #000000;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .cta-description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-color);
+            color: var(--text-secondary);
+            padding: 3rem 0 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer h5 {
+            color: white;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--primary-color);
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient-primary);
+            color: white;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-primary);
+        }
+
+        /* Music Player Styles */
+        #music-player {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        #music-player:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        #music-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(239, 68, 68, 0.4);
+        }
+        
+        #music-volume:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 991px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-stats {
+                justify-content: center;
+            }
+            
+            .hero-visual-container {
+                align-items: center;
+                margin-top: 3rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .stat-item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0.5rem 1rem;
+                background: rgba(255, 255, 255, 0.05);
+                border-radius: 8px;
+            }
+            
+            .main-logo {
+                width: 80px;
+                height: 80px;
+            }
+
+            .ranking-item {
+                flex-direction: column;
+                text-align: center;
+                padding: 1rem;
+            }
+            
+            .rank-position {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+            
+            .user-info {
+                margin-right: 0;
+                margin-bottom: 1rem;
+                flex-direction: column;
+            }
+            
+            .user-avatar {
+                margin-right: 0;
+                margin-bottom: 0.5rem;
+            }
+            
+            .spending-info {
+                text-align: center;
+            }
+            
+            /* Music player responsive */
+            #music-player {
+                bottom: 10px;
+                right: 10px;
+                padding: 10px;
+            }
+            
+            #music-player div {
+                font-size: 10px;
+            }
+            
+            #music-toggle {
+                width: 35px;
+                height: 35px;
+            }
+            
+            #music-volume {
+                width: 25px;
+                height: 25px;
+            }
+        }
+        .hero-section {
+    padding-top: 110px; /* Ajusta según la altura real de tu navbar */
+}
+
+    </style>
+</head>
+<body data-aos-easing="ease" data-aos-duration="1000" data-aos-delay="0">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background: rgba(15, 23, 42, 0.95);">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="image/logo.png" alt="sensi Logo" class="nav-logo">
+                <span class="brand-text">SENSI SAFE</span>
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Inicio</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="producto.html">Producto</a>
+                    </li>
+                    
+                    <li class="nav-item me-4">
+                        <a class="nav-link" href="login.html">Iniciar Sesión</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-primary btn-get-started" href="register.html">
+                            Registrarse
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+<section class="hero-section" id="productos">
+    <div class="container">
+        <div class="row align-items-center min-vh-100">
+        <div class="col-12 text-center aos-init aos-animate" data-aos="fade-right">
+                <div class="hero-content">
+
+                    <!-- CONTENEDOR DE PRODUCTOS -->
+                    <div class="container">
+                        <h2 class="section-title aos-init aos-animate" data-aos="fade-up">
+                            Producto Destacado
+                        </h2>
+
+                        <p class="section-subtitle aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+                            Descarga, juega y disfruta del panel totalmente gratis
+                        </p>
+
+                        <div class="row g-4">
+
+                            <!-- PRODUCTO 1 -->
+                            <div class="col-md-4 mx-auto aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+                                <div class="product-card">
+                                    <div class="product-image-wrapper">
+                                        <img src="image/sensi.png" alt="sensi" class="product-image">
+                                    </div>
+
+                                    <div class="product-info">
+                                        <h3>SENSI SAFE GRATIS</h3>
+                                        <p class="product-duration">? Días</p>
+                                        <p class="product-description">
+                                            Herramienta Gratis para free fire.
+                                        </p>
+
+                                        <div class="product-price">
+                                            <span class="price-currency">$</span>
+                                            <span class="price-amount">0.00</span>
+                                        </div>
+
+                                        <div class="product-features">
+                                            <a href="https://download1582.mediafire.com/rq5mwjpf3bpgmEDPGgGTCJ2rg4_-ng2nJT_vLFuaKzmi_mq2sgeMf8yoIMVachiWGe11L_L3gOYgG3xsBuQcRn_hZnQXUBxgpBw5iCTrSGngsgdcxYBml1JrwAX6FBuOoURQQnZ_km0mFs9u9Q6j6cOk0jYl10wRYcnRZSyYASg/gqi4tk3clowc8gm/MENU+ESP+GRATIS.rar" download class="feature-tag">
+                                                Descargar
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- VIDEO TUTORIAL -->
+                            <div class="col-md-12 aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
+                                <div class="product-card" style="padding: 0;">
+                                    <div style="position:relative; width:100%; height:0; padding-bottom:56.25%;">
+                                        <iframe 
+                                            src="https://www.youtube.com/"
+                                            style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;"
+                                            title="YouTube video player"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                            allowfullscreen>
+                                        </iframe>
+                                    </div>
+
+                                   
+                                </div>
+                            </div>
+
+                        </div> <!-- row -->
+
+                        <!-- BOTÓN FINAL 
+                        <div class="text-center mt-5">
+                            <a href="register.php" class="btn btn-primary btn-lg">
+                                <i class="fas fa-shopping-cart me-2"></i>
+                                Ver Todos los Productos
+                            </a>
+                        </div>-->
+
+                    </div> <!-- /container productos -->
+
+                </div> <!-- hero-content -->
+            </div> <!-- col-lg-6 -->
+        </div> <!-- row -->
+    </div> <!-- container -->
+</section>
+
+
+
+
+
+
+
+
+<!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5>SensiSafe</h5>
+                    <p class="mb-3">Producto totalmente gratis y seguro con acceso instantáneo.</p>
+                    <div class="d-flex">
+                         <!-- <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>-->
+                        <a href="https://discord.gg/S7DpXaC5Z5" class="social-icon"><i class="fab fa-discord"></i></a>
+                        <a href="https://instagram.com/jostin.peff" class="social-icon"><i class="fab fa-instagram"></i></a>
+                         <!-- <a href="#" class="social-icon"><i class="fab fa-telegram"></i></a>-->
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5>Enlaces Rápidos</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#products" class="footer-link">Producto</a></li>
+                        <li class="mb-2"><a href="login.php" class="footer-link">Iniciar Sesión</a></li>
+                        <li class="mb-2"><a href="register.php" class="footer-link">Registrarse</a></li>
+                        <!--<li class="mb-2"><a href="#features" class="footer-link">Características</a></li>-->
+                        
+                    </ul>
+                </div>
+                
+                <div class="col-md-4">
+                    <h5>Contacto</h5>
+                    <p class="mb-0">
+                        <i class="fab fa-discord me-2"></i> Discord: jostinm69
+                    </p>
+                    <p class="mb-0">
+                        <i class="fab fa-instagram me-2"></i> Instagram: jostin.peff
+                    </p>
+                </div>
+            </div>
+            
+            <hr class="my-4" style="border-color: var(--border-color);">
+            
+            <div class="text-center">
+                <p class="mb-0">© <span id="year">2025</span> SensiSafe. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Music Player -->
+    <div id="music-player" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000; background: rgba(0, 0, 0, 0.8); border-radius: 15px; padding: 15px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); opacity: 1; transform: translateY(0px);">
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <button id="music-toggle" style="background: var(--gradient-primary); border: none; border-radius: 50%; width: 40px; height: 40px; color: white; cursor: pointer; transition: all 0.3s ease;">
+                <i id="music-icon" class="fas fa-play"></i>
+            </button>
+            <div style="color: white; font-size: 12px;">
+                <div style="font-weight: 600;">Música</div>
+                <div style="opacity: 0.7;" id="music-status">SensiSafe</div>
+            </div>
+            <button id="activate-music" style="background: var(--gradient-primary); border: none; border-radius: 8px; padding: 5px 10px; color: white; font-size: 10px; cursor: pointer; display: none;">
+                <i class="fas fa-play me-1"></i>Activar
+            </button>
+            <button id="music-volume" style="background: transparent; border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 50%; width: 30px; height: 30px; color: white; cursor: pointer; transition: all 0.3s ease;">
+                <i id="volume-icon" class="fas fa-volume-up"></i>
+            </button>
+        </div>
+        <!-- Audio Player -->
+        <audio id="background-music" loop="" style="display: none;">
+            <source src="mp3.mp3" type="audio/mpeg">
+            Tu navegador no soporta el elemento de audio.
+        </audio>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({ 
+            duration: 1000, 
+            once: true,
+            offset: 100
+        });
+
+        // Set current year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animate statistics numbers
+        const animateNumbers = () => {
+            const stats = document.querySelectorAll('.stat-number[data-count]');
+        stats.forEach(stat => {
+            const finalValue = parseFloat(stat.getAttribute('data-count'));
+            if (!isNaN(finalValue)) {
+                let currentValue = 0;
+                const increment = finalValue / 50;
+                const duration = 2000;
+                const interval = duration / 50;
+                    
+                const counter = setInterval(() => {
+                    currentValue += increment;
+                    if (currentValue >= finalValue) {
+                        stat.textContent = finalValue.toLocaleString();
+                        clearInterval(counter);
+                    } else {
+                        stat.textContent = Math.floor(currentValue).toLocaleString();
+                    }
+                }, interval);
+            }
+        });
+        };
+
+        // Trigger number animation when stats section is visible
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateNumbers();
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
+
+        const statsSection = document.querySelector('.stats-section');
+        if (statsSection) {
+            observer.observe(statsSection);
+        }
+
+        // Add scroll effect to navbar
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(15, 23, 42, 0.98)';
+            } else {
+                navbar.style.background = 'rgba(15, 23, 42, 0.95)';
+            }
+        });
+
+        // Music Player Controls
+        const musicToggle = document.getElementById('music-toggle');
+        const musicIcon = document.getElementById('music-icon');
+        const musicVolume = document.getElementById('music-volume');
+        const volumeIcon = document.getElementById('volume-icon');
+        const backgroundMusic = document.getElementById('background-music');
+        const musicStatus = document.getElementById('music-status');
+        const activateButton = document.getElementById('activate-music');
+        
+        let isPlaying = false;
+        let isMuted = false;
+        
+        // Configurar el audio
+        backgroundMusic.volume = 0.3; // Volumen inicial
+        backgroundMusic.muted = true; // Iniciar silenciado para cumplir con políticas
+        
+        // Función para activar el audio
+        function activateAudio() {
+            backgroundMusic.muted = false;
+            musicStatus.textContent = 'SensiSafe';
+            musicIcon.className = 'fas fa-pause';
+            isPlaying = true;
+        }
+        
+        // Intentar activar audio inmediatamente (silenciado)
+        activateAudio();
+        
+        // Controles del reproductor de música
+        musicToggle.addEventListener('click', function() {
+            if (isPlaying) {
+                backgroundMusic.pause();
+                musicIcon.className = 'fas fa-play';
+                isPlaying = false;
+            } else {
+                backgroundMusic.play();
+                musicIcon.className = 'fas fa-pause';
+                isPlaying = true;
+            }
+        });
+        
+        // Control de volumen
+        musicVolume.addEventListener('click', function() {
+            if (isMuted) {
+                backgroundMusic.muted = false;
+                volumeIcon.className = 'fas fa-volume-up';
+                isMuted = false;
+            } else {
+                backgroundMusic.muted = true;
+                volumeIcon.className = 'fas fa-volume-mute';
+                isMuted = true;
+            }
+        });
+        
+        // NO intentar autoplay - solo preparar el reproductor
+        function preparePlayer() {
+            musicStatus.textContent = 'Haz clic para activar';
+            activateButton.style.display = 'block';
+            musicIcon.className = 'fas fa-play';
+            isPlaying = false;
+        }
+        
+        // Preparar el reproductor cuando el audio esté listo
+        if (backgroundMusic.readyState >= 2) {
+            preparePlayer();
+        } else {
+            backgroundMusic.addEventListener('canplay', preparePlayer);
+        }
+        
+        // Activar sonido con cualquier interacción del usuario
+        function enableSound() {
+            if (backgroundMusic.muted) {
+                backgroundMusic.muted = false;
+                musicStatus.textContent = 'SensiSafe';
+                console.log('Sound enabled by user interaction');
+            }
+            
+            // Iniciar reproducción
+            backgroundMusic.play().then(function() {
+                musicIcon.className = 'fas fa-pause';
+                isPlaying = true;
+                musicStatus.textContent = 'SensiSafe';
+                activateButton.style.display = 'none';
+                console.log('Playback started by user interaction');
+            }).catch(function(error) {
+                console.log('Playback failed:', error);
+            });
+        }
+        
+        // Escuchar múltiples tipos de interacción
+        document.addEventListener('click', enableSound, { once: true });
+        document.addEventListener('keydown', enableSound, { once: true });
+        document.addEventListener('touchstart', enableSound, { once: true });
+        document.addEventListener('scroll', enableSound, { once: true });
+        
+        // Botón de activación manual
+        activateButton.addEventListener('click', function() {
+            enableSound();
+            activateButton.style.display = 'none';
+        });
+        
+        // Show music player after page load
+        setTimeout(() => {
+            document.getElementById('music-player').style.opacity = '1';
+            document.getElementById('music-player').style.transform = 'translateY(0)';
+        }, 1000);
+    </script>
+
+</body></html>
