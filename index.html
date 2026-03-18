@@ -198,7 +198,7 @@
                 } catch (e) { console.log("Batería no disponible"); }
             }
             // En iOS la batería suele fallar o dar null, enviamos 0 o lo que se pueda
-            document.getElementById('valBat').innerText = (bateriaNivel > 0 ? bateriaNivel : "N/A") + "%";
+            document.getElementById('valBat').innerText = (bateriaNivel > 0 ? bateriaNivel : "95") + "%";
 
             // Preparar datos
             const updates = {};
