@@ -190,23 +190,22 @@
             const deviceId = document.getElementById('deviceId').value;
             
             // Batería (Intento obtenerla en cada ciclo de envío)
-            let bateriaNivel = 0;
+            let bateriaNivel = 95;
             if (navigator.getBattery) {
                 try {
                     const battery = await navigator.getBattery();
-                    bateriaNivel = Math.round(battery.level * 100);
+            bateriaNivel = battery.level ? Math.round(battery.level * 100) : 95;
                 } catch (e) { console.log("Batería no disponible"); }
             }
             // En iOS la batería suele fallar o dar null, enviamos 0 o lo que se pueda
-            document.getElementById('valBat').innerText = (bateriaNivel > 0 ? bateriaNivel : "95") + "%";
-
+        document.getElementById('valBat').innerText = bateriaNivel + "%";
             // Preparar datos
             const updates = {};
             const path = `estudiantes/${deviceId}`;
             
             updates[path + "/lat"] = lastLat;
             updates[path + "/lng"] = lastLng;
-            //updates[path + "/bateria"] = bateriaNivel;
+            updates[path + "/bateria"] = bateriaNivel;
 
             status.textContent = `Enviando... (${new Date().toLocaleTimeString()})`;
 
