@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulador GPS KidsGuard</title>
+    <title>Bagua Grande</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -23,8 +23,8 @@
     <!-- CABECERA -->
     <div class="w-full untrm-blue text-white p-6 rounded-b-[30px] shadow-lg text-center">
         <i class="fa-solid fa-satellite-dish text-4xl mb-2"></i>
-        <h1 class="text-2xl font-bold">Simulador GPS</h1>
-        <p class="text-sm opacity-80">Convierte este celular en un Tracker</p>
+        <h1 class="text-2xl font-bold">Bagua Grande</h1>
+        <p class="text-sm opacity-80">Bagua Grande</p>
     </div>
 
     <!-- CONTENIDO -->
@@ -41,7 +41,7 @@
 
             <button id="btnToggle" onclick="toggleTracking()" 
                 class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-4 rounded-xl transition duration-300 flex items-center justify-center gap-2 shadow-md">
-                <i class="fa-solid fa-play"></i> INICIAR RASTREO
+                <i class="fa-solid fa-play"></i> INICIAR
             </button>
             
             <p id="statusMsg" class="text-center text-xs text-gray-400 mt-3">GPS Inactivo</p>
@@ -132,7 +132,7 @@
             }
 
             isTracking = true;
-            btn.innerHTML = '<i class="fa-solid fa-stop"></i> DETENER RASTREO';
+            btn.innerHTML = '<i class="fa-solid fa-stop"></i> DETENER';
             btn.classList.remove('bg-blue-500', 'hover:bg-blue-700');
             btn.classList.add('bg-red-500', 'hover:bg-red-700', 'pulse');
             status.textContent = "Iniciando sistemas...";
@@ -148,8 +148,8 @@
             // 1. Iniciamos el GPS (Solo actualiza variables locales)
             watchId = navigator.geolocation.watchPosition(updateLocalData, error, options);
 
-            // 2. Iniciamos el RELOJ (Envía a Firebase cada 5s SIEMPRE)
-            intervalId = setInterval(sendToFirebase, 5000);
+            // 2. Iniciamos el RELOJ (Envía a Firebase cada 10s SIEMPRE)
+            intervalId = setInterval(sendToFirebase, 10000);
         }
 
         function stopTracking() {
