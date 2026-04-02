@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,16 +9,36 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-        body { font-family: 'Roboto', sans-serif; background-color: #F2F4F8; }
-        .untrm-blue { background-color: #1B396A; }
-        .untrm-text { color: #1B396A; }
-        .pulse { animation: pulse-animation 2s infinite; }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #F2F4F8;
+        }
+
+        .untrm-blue {
+            background-color: #1B396A;
+        }
+
+        .untrm-text {
+            color: #1B396A;
+        }
+
+        .pulse {
+            animation: pulse-animation 2s infinite;
+        }
+
         @keyframes pulse-animation {
-            0% { box-shadow: 0 0 0 0px rgba(76, 175, 80, 0.5); }
-            100% { box-shadow: 0 0 0 20px rgba(76, 175, 80, 0); }
+            0% {
+                box-shadow: 0 0 0 0px rgba(76, 175, 80, 0.5);
+            }
+
+            100% {
+                box-shadow: 0 0 0 20px rgba(76, 175, 80, 0);
+            }
         }
     </style>
 </head>
+
 <body class="min-h-screen flex flex-col items-center">
 
     <!-- CABECERA -->
@@ -29,28 +50,35 @@
 
     <!-- CONTENIDO -->
     <div class="w-full max-w-md p-6 -mt-4">
-        
+
         <!-- TARJETA DE CONTROL -->
         <div class="bg-white rounded-2xl shadow-xl p-6 mb-6">
-            <label class="block text-gray-500 text-xs font-bold mb-2 uppercase">ID del Dispositivo</label>
-            <div class="flex items-center border-b-2 border-gray-200 py-2 mb-6">
-                <input id="deviceId" type="text" value="hijo_1" 
-                    class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none font-bold text-lg" 
+            <label class="block text-gray-500 text-xs font-bold mb-2 uppercase">ID del Dispositivo 1</label>
+            <div class="flex items-center border-b-2 border-gray-200 py-2 mb-4">
+                <input id="deviceId1" type="text" value="hijo_1"
+                    class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none font-bold text-lg"
                     placeholder="Ej: hijo_1">
             </div>
 
-            <button id="btnToggle" onclick="toggleTracking()" 
+            <label class="block text-gray-500 text-xs font-bold mb-2 uppercase">ID del Dispositivo 2 (Opcional)</label>
+            <div class="flex items-center border-b-2 border-gray-200 py-2 mb-6">
+                <input id="deviceId2" type="text" value="hijo_2"
+                    class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none font-bold text-lg"
+                    placeholder="Ej: hijo_2">
+            </div>
+
+            <button id="btnToggle" onclick="toggleTracking()"
                 class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-4 rounded-xl transition duration-300 flex items-center justify-center gap-2 shadow-md">
                 <i class="fa-solid fa-play"></i> INICIAR
             </button>
-            
+
             <p id="statusMsg" class="text-center text-xs text-gray-400 mt-3">GPS Inactivo</p>
         </div>
 
         <!-- TARJETA DE DATOS EN VIVO -->
         <div id="dataCard" class="bg-white rounded-2xl shadow-lg p-6 hidden">
             <h3 class="untrm-text font-bold text-lg mb-4 border-b pb-2">Datos en Tiempo Real</h3>
-            
+
             <div class="grid grid-cols-2 gap-4">
                 <!-- Latitud -->
                 <div class="bg-gray-50 p-3 rounded-lg">
@@ -106,7 +134,7 @@
         let watchId = null;
         let intervalId = null; // Para el reloj de 5 segundos
         let isTracking = false;
-        
+
         // Variables para almacenar la última posición conocida
         let lastLat = null;
         let lastLng = null;
@@ -117,7 +145,7 @@
         const status = document.getElementById('statusMsg');
         const dataCard = document.getElementById('dataCard');
 
-        window.toggleTracking = function() {
+        window.toggleTracking = function () {
             if (!isTracking) {
                 startTracking();
             } else {
@@ -156,7 +184,7 @@
             isTracking = false;
             navigator.geolocation.clearWatch(watchId);
             clearInterval(intervalId); // Detenemos el reloj
-            
+
             btn.innerHTML = '<i class="fa-solid fa-play"></i> INICIAR RASTREO';
             btn.classList.add('bg-blue-500', 'hover:bg-blue-700');
             btn.classList.remove('bg-red-500', 'hover:bg-red-700', 'pulse');
@@ -167,7 +195,7 @@
         // Función A: Se ejecuta cada vez que el GPS detecta algo (puede ser rápido o lento)
         function updateLocalData(pos) {
             const crd = pos.coords;
-            
+
             // Guardamos en variables globales
             lastLat = crd.latitude;
             lastLng = crd.longitude;
@@ -187,25 +215,41 @@
                 return; // No enviamos nada si aún no hay coordenadas
             }
 
-            const deviceId = document.getElementById('deviceId').value;
-            
+            const deviceId1 = document.getElementById('deviceId1').value.trim();
+            const deviceId2 = document.getElementById('deviceId2').value.trim();
+
             // Batería (Intento obtenerla en cada ciclo de envío)
             let bateriaNivel = 95;
             if (navigator.getBattery) {
                 try {
                     const battery = await navigator.getBattery();
-            bateriaNivel = battery.level ? Math.round(battery.level * 100) : 95;
+                    bateriaNivel = battery.level ? Math.round(battery.level * 100) : 95;
                 } catch (e) { console.log("Batería no disponible"); }
             }
             // En iOS la batería suele fallar o dar null, enviamos 0 o lo que se pueda
-        document.getElementById('valBat').innerText = bateriaNivel + "%";
+            document.getElementById('valBat').innerText = bateriaNivel + "%";
+            
             // Preparar datos
             const updates = {};
-            const path = `estudiantes/${deviceId}`;
             
-            updates[path + "/lat"] = lastLat;
-            updates[path + "/lng"] = lastLng;
-            //updates[path + "/bateria"] = bateriaNivel;
+            if (deviceId1) {
+                const path1 = `estudiantes/${deviceId1}`;
+                updates[path1 + "/lat"] = lastLat;
+                updates[path1 + "/lng"] = lastLng;
+                //updates[path1 + "/bateria"] = bateriaNivel;
+            }
+            
+            if (deviceId2) {
+                const path2 = `estudiantes/${deviceId2}`;
+                updates[path2 + "/lat"] = lastLat;
+                updates[path2 + "/lng"] = lastLng;
+                //updates[path2 + "/bateria"] = bateriaNivel;
+            }
+
+            if (Object.keys(updates).length === 0) {
+                status.textContent = "Ingrese al menos un ID de dispositivo";
+                return;
+            }
 
             status.textContent = `Enviando... (${new Date().toLocaleTimeString()})`;
 
@@ -225,5 +269,5 @@
         }
     </script>
 </body>
-</html>
 
+</html>
